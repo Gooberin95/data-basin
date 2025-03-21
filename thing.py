@@ -1,29 +1,19 @@
+import os
+from dotenv import load_dotenv
 import pyodbc
 
-# Azure SQL Managed Instance Connection Details
-server = 'your-server-name.public.{}.database.windows.net'.format('your-region')
-database = 'Unicorn'  # Your database name
-username = 'your-username'
-password = 'your-password'
+# Load environment variables
+load_dotenv()
 
-# Connection string
-conn_string = f'DRIVER={{ODBC Driver 18 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;'
+# Get connection details from .env
+server = os.getenv("DB_SERVER")
+database = os.getenv("DB_NAME")
+username = os.getenv("DB_USER")
+password = os.getenv("DB_PASSWORD")
 
-try:
-    # Establish Connection
-    conn = pyodbc.connect(conn_string)
-    cursor = conn.cursor()
-    
-    # Sample Query
-    cursor.execute("SELECT TOP 10 * FROM your_table_name")  # Replace with your table name
-    
-    # Fetch & Print Results
-    for row in cursor.fetchall():
-        print(row)
-    
-    # Close Connection
-    cursor.close()
-    conn.close()
+# Create connection string
+conn_str = f"DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password}"
 
-except Exception as e:
-    print("Error:", e)
+# Connect to Azure SQL
+conn = pyodbc.connect(conn_str)
+print("Connected successfully!")
