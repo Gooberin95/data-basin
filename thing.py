@@ -35,32 +35,20 @@ column_names = [
 columns_str = ", ".join(column_names)
 placeholders = ", ".join(["?"] * len(column_names))  # Generate ?, ?, ?, ... dynamically
 
-# Connect to Azure SQL
+
 try:
+    #Connect to Azure sql
     conn = pyodbc.connect(conn_str)
-    cursor = conn.cursor()
+    # Set what query we will run
+    query = f"SELECT * FROM  {table_name}"
+    #Read data into a Panda DataFrame
+    df = pd.read_sql(query, conn)
 
-    # Test connection
-    cursor.execute("SELECT 1")
-    result = cursor.fetchone()
-
-    if result:
-        print("✅ Connection to the database was successful!")
-
-        # Generate the SQL INSERT statement dynamically
-        insert_query = f"INSERT INTO {table_name} ({columns_str}) VALUES ({placeholders})"
-
-        # Insert data row by row
-        for _, row in df.iterrows():
-            cursor.execute(insert_query, tuple(row[column] for column in column_names))
-
-        # Commit changes
-        conn.commit()
-        print("✅ Data successfully inserted into the table!")
-
-    # Close connection
-    cursor.close()
     conn.close()
+
+    print(df)
+
+
 
 except pyodbc.Error as e:
     print("❌ Error:", e)
