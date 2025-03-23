@@ -1,11 +1,19 @@
 import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
-
+import pandas as pd
 # Load environment variables
 load_dotenv()
+# C:\Users\Sober\Downloads
+
+csv_file_path = r"C:\\Users\\Sober\\Downloads\\freelancer_earnings_bd.csv"
+
+df = pd.read_csv(csv_file_path)
+
+
 
 # Get credentials
+
 server = os.getenv("DB_SERVER")
 database = os.getenv("DB_NAME")
 username = os.getenv("DB_USER")
@@ -18,5 +26,9 @@ engine = create_engine(f"mssql+pyodbc://{username}:{password}@{server}/{database
 try:
     with engine.connect() as conn:
         print("✅ Connection successful!")
+        
+        df.to_sql("Homes", con=engine, if_exists="replace", index=False)
+        print("Data has now been inserted")
+
 except Exception as e:
     print(f"❌ Connection failed: {e}")
