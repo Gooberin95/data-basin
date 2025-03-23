@@ -26,9 +26,12 @@ engine = create_engine(f"mssql+pyodbc://{username}:{password}@{server}/{database
 try:
     with engine.connect() as conn:
         print("✅ Connection successful!")
-        
-        df.to_sql("Homes", con=engine, if_exists="replace", index=False)
-        print("Data has now been inserted")
+        query = "SELECT * FROM Homes"
+        df = pd.read_sql(query, engine)
+
+        print(df)
+       # df.to_sql("Homes", con=engine, if_exists="replace", index=False)
+        #print("Data has now been inserted")
 
 except Exception as e:
     print(f"❌ Connection failed: {e}")
