@@ -46,7 +46,8 @@ try:
 
     conn.close()
 
-    print(df)
+    df.to_excel("output.xlsx", index=False)
+    
 
 
 
