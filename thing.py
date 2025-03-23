@@ -29,9 +29,13 @@ try:
         query = "SELECT * FROM Homes"
         df = pd.read_sql(query, engine)
 
-        print(df)
+        print
        # df.to_sql("Homes", con=engine, if_exists="replace", index=False)
         #print("Data has now been inserted")
+
+        df.to_excel("Another_output.xlsx", index=False)
+        print("The data has now been saved to an Excel file")
+        
 
 except Exception as e:
     print(f"❌ Connection failed: {e}")
