@@ -64,3 +64,4 @@ try:
 
 except pyodbc.Error as e:
     print("❌ Error:", e)
+
