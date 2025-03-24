@@ -27,15 +27,21 @@ try:
     with engine.connect() as conn:
         print("✅ Connection successful!")
        
-       
-        query = "SELECT Platform, Payment_Method FROM Homes"
+    #    Index(['Freelancer_ID', 'Job_Category', 'Platform', 'Experience_Level',
+    #    'Client_Region', 'Payment_Method', 'Job_Completed', 'Earnings_USD',
+    #    'Hourly_Rate', 'Job_Success_Rate', 'Client_Rating', 'Job_Duration_Days',
+    #    'Project_Type', 'Rehire_Rate', 'Marketing_Spend'],
+    #   dtype='object')
+    
+        query = " SELECT * FROM Homes WHERE Job_Category = 'Data Entry'";
         df = pd.read_sql(query, engine)
+
         print(df)
         
        # df.to_sql("Homes", con=engine, if_exists="replace", index=False)
         #print("Data has now been inserted")
 
-    # df.to_excel("Another_output.xlsx", index=False)
+        df.to_excel("Data_Entry_info.xlsx", index=False)
     #    print("The data has now been saved to an Excel file")
 
 
