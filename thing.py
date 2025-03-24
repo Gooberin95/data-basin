@@ -28,9 +28,9 @@ try:
         print("✅ Connection successful!")
        
        
-       # query = "SELECT * FROM Homes"
-       # df = pd.read_sql(query, engine)
-
+        query = "SELECT Platform, Payment_Method FROM Homes"
+        df = pd.read_sql(query, engine)
+        print(df)
         
        # df.to_sql("Homes", con=engine, if_exists="replace", index=False)
         #print("Data has now been inserted")
