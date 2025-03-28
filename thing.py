@@ -44,4 +44,5 @@ def replace_table_data():
     df.to_sql("Homes", con=engine, if_exists="replace", index=False)
     print("Data has now been inserted")
 
-replace_table_data()
+insert_into_excel()
+
