@@ -33,7 +33,7 @@ try:
     #    'Project_Type', 'Rehire_Rate', 'Marketing_Spend'],
     #   dtype='object')
     
-        query = " SELECT * FROM Homes WHERE Earnings_USD > 50";
+        query = " SELECT * FROM Homes WHERE Hourly_Rate > 50";
         df = pd.read_sql(query, engine)
 
         print(df)
