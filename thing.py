@@ -6,9 +6,9 @@ import pandas as pd
 load_dotenv()
 # C:\Users\Sober\Downloads
 
-#csv_file_path = r"C:\\Users\\Sober\\Downloads\\freelancer_earnings_bd.csv"
+csv_file_path = r"C:\\Users\\Sober\\Downloads\\final-post-college-salaries.csv"
 
-#df = pd.read_csv(csv_file_path)
+df = pd.read_csv(csv_file_path)
 
 
 
@@ -33,15 +33,15 @@ try:
     #    'Project_Type', 'Rehire_Rate', 'Marketing_Spend'],
     #   dtype='object')
     
-        query = " SELECT Job_Success_Rate, Client_Rating, Platform FROM Homes"
-        df = pd.read_sql(query, engine)
+      #  query = " SELECT Job_Success_Rate, Client_Rating, Platform FROM Homes"
+       # df = pd.read_sql(query, engine)
 
-        print(df)
+       # print(df)
         
-       # df.to_sql("Homes", con=engine, if_exists="replace", index=False)
-        #print("Data has now been inserted")
+        df.to_sql("Homes", con=engine, if_exists="replace", index=False)
+        print("Data has now been inserted")
 
-        df.to_excel("Hourly_Rate_5.xlsx", index=False)
+        #df.to_excel("Hourly_Rate_5.xlsx", index=False)
     #    print("The data has now been saved to an Excel file")
 
 
