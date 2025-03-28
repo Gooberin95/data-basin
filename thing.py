@@ -33,7 +33,7 @@ try:
     #    'Project_Type', 'Rehire_Rate', 'Marketing_Spend'],
     #   dtype='object')
     
-        query = " SELECT * FROM Homes WHERE Job_Category = 'Data Entry'";
+        query = " SELECT * FROM Homes WHERE Earnings_USD > 50";
         df = pd.read_sql(query, engine)
 
         print(df)
@@ -41,7 +41,7 @@ try:
        # df.to_sql("Homes", con=engine, if_exists="replace", index=False)
         #print("Data has now been inserted")
 
-        df.to_excel("Data_Entry_info.xlsx", index=False)
+        df.to_excel("Data_entry_50$.xlsx", index=False)
     #    print("The data has now been saved to an Excel file")
 
 
