@@ -34,9 +34,13 @@ except Exception as e:
  
 
 def select_all():
-    query = "SELECT * FROM HOMES"
-    df = pd.read_sql(query, engine)
-    print(df)
+    try:
+        query = "SELECT * FROM HOMES"
+        df = pd.read_sql(query, engine)
+        print(df)
+    except Exception as e:
+        print("Function failed because {e}")
+        
 
 
 def insert_into_excel():
