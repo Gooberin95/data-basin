@@ -33,16 +33,16 @@ try:
     #    'Project_Type', 'Rehire_Rate', 'Marketing_Spend'],
     #   dtype='object')
     
-      #  query = " SELECT Job_Success_Rate, Client_Rating, Platform FROM Homes"
-       # df = pd.read_sql(query, engine)
+        query = "SELECT * FROM Homes"
+        df = pd.read_sql(query, engine)
 
        # print(df)
         
-        df.to_sql("Homes", con=engine, if_exists="replace", index=False)
-        print("Data has now been inserted")
+        #df.to_sql("Homes", con=engine, if_exists="replace", index=False)
+        #print("Data has now been inserted")
 
-        #df.to_excel("Hourly_Rate_5.xlsx", index=False)
-    #    print("The data has now been saved to an Excel file")
+        df.to_excel("College_Info.xlsx", index=False)
+        print("The data has now been saved to an Excel file")
 
 
 except Exception as e:
