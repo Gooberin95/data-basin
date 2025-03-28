@@ -6,7 +6,7 @@ import pandas as pd
 load_dotenv()
 # C:\Users\Sober\Downloads
 
-csv_file_path = r"C:\\Users\\Sober\\Downloads\\final-post-college-salaries.csv"
+csv_file_path = r"C:\\Users\\Sober\\Downloads\\student_depression_dataset.csv"
 
 df = pd.read_csv(csv_file_path)
 
@@ -26,24 +26,22 @@ engine = create_engine(f"mssql+pyodbc://{username}:{password}@{server}/{database
 try:
     with engine.connect() as conn:
         print("✅ Connection successful!")
-       
-    #    Index(['Freelancer_ID', 'Job_Category', 'Platform', 'Experience_Level',
-    #    'Client_Region', 'Payment_Method', 'Job_Completed', 'Earnings_USD',
-    #    'Hourly_Rate', 'Job_Success_Rate', 'Client_Rating', 'Job_Duration_Days',
-    #    'Project_Type', 'Rehire_Rate', 'Marketing_Spend'],
-    #   dtype='object')
-    
-        query = "SELECT * FROM Homes"
-        df = pd.read_sql(query, engine)
-
-       # print(df)
-        
-        #df.to_sql("Homes", con=engine, if_exists="replace", index=False)
-        #print("Data has now been inserted")
-
-        df.to_excel("College_Info.xlsx", index=False)
-        print("The data has now been saved to an Excel file")
-
 
 except Exception as e:
     print(f"❌ Connection failed: {e}")
+
+
+ 
+def insert_into_excel():
+    query = "SELECT * FROM Homes"
+    df = pd.read_sql(query, engine)
+    df.to_excel("Two_College_Info.xlsx", index=False)
+    print("The data has now been saved to an Excel file")
+
+
+def replace_table_data():
+
+    df.to_sql("Homes", con=engine, if_exists="replace", index=False)
+    print("Data has now been inserted")
+
+replace_table_data()
