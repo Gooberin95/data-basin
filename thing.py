@@ -32,17 +32,31 @@ except Exception as e:
 
 
  
+
+def select_all():
+    query = "SELECT * FROM HOMES"
+    df.pd.read_sql(query, engine)
+    print(df)
+
+
 def insert_into_excel():
-    query = "SELECT * FROM Homes"
-    df = pd.read_sql(query, engine)
-    df.to_excel("Two_College_Info.xlsx", index=False)
-    print("The data has now been saved to an Excel file")
+    try:
+
+        query = "SELECT * FROM Homes"
+        df = pd.read_sql(query, engine)
+        df.to_excel("Two_College_Info.xlsx", index=False)
+        print("The data has now been saved to an Excel file")
+    except Exception as e:
+        print(f"function failed because of {e}")
 
 
 def replace_table_data():
+    try:
 
-    df.to_sql("Homes", con=engine, if_exists="replace", index=False)
-    print("Data has now been inserted")
+        df.to_sql("Homes", con=engine, if_exists="replace", index=False)
+        print("Data has now been inserted")
+    except Exception as e:
+        print("Function failed because of {e}")
 
-insert_into_excel()
 
+select_all()
