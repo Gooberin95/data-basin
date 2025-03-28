@@ -35,7 +35,7 @@ except Exception as e:
 
 def select_all():
     query = "SELECT * FROM HOMES"
-    df.pd.read_sql(query, engine)
+    df = pd.read_sql(query, engine)
     print(df)
 
 
